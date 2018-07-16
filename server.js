@@ -1,18 +1,28 @@
 const express = require("express");
-const path = require("path");
+const bodyParser = require("body-parser")
 const app = express();
-const bodyParser = require('body-parser');
-const port = process.env.PORT || 8000;
-app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
+const passport = require('./config/passport').passport
+app.use(passport.initialize())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
-app.use(express.static(path.join(__dirname, "public")));
+app.get("/", function(req, res) {
+  res.json({message: "Express is up!"});
+});
+require('./config/routes')(app)
 
-app.set('view engine', 'ejs');
+app.get("/secret", passport.authenticate('jwt', { session: false }), function(req, res){
+  res.json({message: "Success! You can not see this without a token"});
+});
 
-var routes_setter = require('./config/routes.js');
-routes_setter(app);
+// app.get("/secretDebug",
+//   function(req, res, next){
+//     console.log(req.get('Authorization'));
+//     next();
+//   }, function(req, res){
+//     res.json("debugging");
+// });
 
-app.listen(port, function() {
-  console.log('Listening on', port);
+app.listen(8000, function() {
+  console.log("Express running");
 });

@@ -1,3 +1,3 @@
-## Node/Knex MVC Template
+## Node / Express / Knex JSON web token template
 
-To start using this simply clone it and do npm install.
+A template for making a node/express/knex server with json web token authentication.

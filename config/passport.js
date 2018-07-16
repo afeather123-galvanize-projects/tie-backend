@@ -9,6 +9,8 @@ var JwtStrategy = passportJWT.Strategy;
 
 var jwtOptions = {}
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+// DON'T USE THIS KEY, MOVE TO AN ENVIRONMENTAL VARIABLE AND DON'T PUSH IT TO YOUR REPOSITORY
+// OR FACE THE WRATH OF THE INTERNET
 jwtOptions.secretOrKey = 'tasmanianDevil';
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {

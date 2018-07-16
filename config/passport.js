@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const jwt = require('jsonwebtoken');
 const passport = require("passport");
 const passportJWT = require("passport-jwt");

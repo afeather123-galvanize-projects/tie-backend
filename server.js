@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
 const passport = require('./config/passport').passport
+const cors = require('cors')
+app.use(cors())
 app.use(passport.initialize())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())

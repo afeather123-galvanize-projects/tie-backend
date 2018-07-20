@@ -51,5 +51,10 @@ module.exports = {
                 res.sendStatus(404)
             }
         })
+    },
+
+    verify: (req,res) => {
+        const {name, email} = req.user
+        res.json({name,email})
     }
 }

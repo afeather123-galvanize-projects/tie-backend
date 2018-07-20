@@ -7,6 +7,7 @@ app.use(cors())
 app.use(passport.initialize())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+const port = process.env.PORT || 8000
 
 app.get("/", function(req, res) {
   res.json({message: "Express is up!"});
@@ -25,6 +26,6 @@ app.get("/secret", passport.authenticate('jwt', { session: false }), function(re
 //     res.json("debugging");
 // });
 
-app.listen(8000, function() {
+app.listen(port, function() {
   console.log("Express running");
 });
